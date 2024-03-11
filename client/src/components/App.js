@@ -11,8 +11,6 @@ import Tem from './Tem'
 import AppAppBar from './AppAppBar';
 import Footer from './Footer';
 
-
-
 function App() {
   const title = "Welcome to the app"
   return (

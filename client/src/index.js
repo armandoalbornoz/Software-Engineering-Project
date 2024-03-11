@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/index.css';
+
 
 import ReactDOM from 'react-dom/client';
 import '@fontsource/roboto/300.css';

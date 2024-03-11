@@ -14,12 +14,6 @@ import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 
 const items = [
   {
-    icon: <SettingsSuggestRoundedIcon />,
-    title: 'Adaptable performance',
-    description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
-  },
-  {
     icon: <ConstructionRoundedIcon />,
     title: 'Built to last',
     description:
@@ -29,26 +23,16 @@ const items = [
     icon: <ThumbUpAltRoundedIcon />,
     title: 'Great user experience',
     description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+      "Our BMI tracking app effortlessly intertwines user-friendly design with powerful functionality."
   },
   {
     icon: <AutoFixHighRoundedIcon />,
     title: 'Innovative functionality',
     description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+      'Our app pioneers innovation by integrating cutting-edge functionality, such aspersonalized insight',
   },
-  {
-    icon: <SupportAgentRoundedIcon />,
-    title: 'Reliable support',
-    description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
-  },
-  {
-    icon: <QueryStatsRoundedIcon />,
-    title: 'Precision in every detail',
-    description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
-  },
+
+
 ];
 
 export default function Highlights() {
@@ -81,9 +65,8 @@ export default function Highlights() {
             Highlights
           </Typography>
           <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Explore why our product stands out: adaptability, durability,
-            user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail.
+            Explore why BMI tracker stands out: adaptability, durability,
+            user-friendly design, and innovation.
           </Typography>
         </Box>
         <Grid container spacing={2.5}>

@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
+import Divider from '@mui/material/Divider';
+
 
 function Copyright(props) {
   return (
@@ -71,7 +73,11 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs"
+         sx={{
+          pt: { xs: 14, sm: 15 },
+          pb: { xs: 8, sm: 5 },
+        }}>
         <CssBaseline />
         <Box
           sx={{

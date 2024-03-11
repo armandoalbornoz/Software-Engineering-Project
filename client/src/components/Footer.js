@@ -7,6 +7,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import {useLocation} from 'react-router-dom';
 
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -28,7 +29,13 @@ function Copyright() {
 }
 
 export default function Footer() {
+  const location  = useLocation();
+
+
   return (
+  <div>
+  {location.pathname === "/signup" || location.pathname === "/signin" ? "" :  
+
     <Container
       sx={{
         display: 'flex',
@@ -39,6 +46,7 @@ export default function Footer() {
         textAlign: { sm: 'center', md: 'left' },
       }}
     >
+
       <Box
         sx={{
           display: 'flex',
@@ -166,5 +174,7 @@ export default function Footer() {
         </Stack>
       </Box>
     </Container>
+    }
+    </div>
   );
 }

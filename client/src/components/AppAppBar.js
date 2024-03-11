@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Link as RouterLink, } from 'react-router-dom';
+import { Link as RouterLink, useLocation, useNavigate, } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -13,7 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
-import {useNavigate} from "react-router-dom"
+import {useParams} from "react-router-dom";
+
 
 
 const logoStyle = {
@@ -24,29 +25,21 @@ const logoStyle = {
 
 function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate();
+  const {param} = useParams() //Grabs the url param
+  const navigate  = useNavigate();
+  const location  = useLocation();
 
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-  const scrollToSection = (sectionId) => {
-    const sectionElement = document.getElementById(sectionId);
-    const offset = 128;
-    if (sectionElement) {
-      const targetScroll = sectionElement.offsetTop - offset;
-      sectionElement.scrollIntoView({ behavior: 'smooth' });
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth',
-      });
-      setOpen(false);
-    }
-  };
+  console.log(location);
 
   return (
     <div>
+      {location.pathname === "/signup" || location.pathname === "/signin" ? "" :  
+
       <AppBar
         position="fixed"
         sx={{
@@ -93,48 +86,30 @@ function AppAppBar({ mode, toggleColorMode }) {
                   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
                 }
                 style={logoStyle}
-                alt="logo of sitemark"
+                alt="logO"
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <MenuItem
-                  sx={{ py: '6px', px: '12px' }}
-                >
+                <MenuItem sx={{ py: '6px', px: '12px' }} >
                   <Typography variant="body2" color="text.primary">                  
                     <Link component={RouterLink} to="/" variant="body"> Home </Link>
                   </Typography>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection('testimonials')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
+                <MenuItem sx={{ py: '6px', px: '12px' }}>
                   <Typography variant="body2" color="text.primary">
-                  <Link component={RouterLink} to="/create" variant="body"> Provide Information </Link>
+                    <Link component={RouterLink} to="/create" variant="body"> Provide Information </Link>
                   </Typography>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection('highlights')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
+                <MenuItem sx={{ py: '6px', px: '12px' }}>
                   <Typography variant="body2" color="text.primary">
-                  <Link component={RouterLink} to="/signin" variant="body"> Sign In</Link>
+                    <Link component={RouterLink} to="/signin" variant="body"> Sign In</Link>
                   </Typography>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection('pricing')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
+                <MenuItem  sx={{ py: '6px', px: '12px' }}>
                   <Typography variant="body2" color="text.primary">
-                  <Link component={RouterLink} to="/signup" variant="body"> Sign Up</Link>
+                    <Link component={RouterLink} to="/signup" variant="body"> Sign Up</Link>
                   </Typography>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection('faq')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    FAQ
-                  </Typography>
-                </MenuItem>
+     
               </Box>
             </Box>
             <Box
@@ -167,21 +142,11 @@ function AppAppBar({ mode, toggleColorMode }) {
                 Sign up
               </Button>
             </Box>
-            <Box sx={{ display: { sm: '', md: 'none' } }}>
-              <Button
-                variant="text"
-                color="primary"
-                aria-label="menu"
-                onClick={toggleDrawer(true)}
-                sx={{ minWidth: '30px', p: '4px' }}
-              >
-                <MenuIcon />
-              </Button>
-   
-            </Box>
+          
           </Toolbar>
         </Container>
       </AppBar>
+      }
     </div>
   );
 }

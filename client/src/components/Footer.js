@@ -34,7 +34,7 @@ export default function Footer() {
 
   return (
   <div>
-  {location.pathname === "/signup" || location.pathname === "/signin" ? "" :  
+  {location.pathname === "/signup" || location.pathname === "/signin"||  location.pathname === "/create" ? ""  :  
 
     <Container
       sx={{

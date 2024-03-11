@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Home from './Home';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Create from './Create';
+
 import UserMedInfo from './UserMedInfo';
 import NotFound from './NotFound';
 import SignUp from './SignUp';
@@ -51,6 +52,8 @@ function App() {
             <Route path="/signup" element={<SignUp/>} />
             <Route path="/" element={<Hero/>} />
             <Route path="/create" element={<Create/>} />
+
+
             <Route path="/medical-information/:id" element={<UserMedInfo/>} />
             <Route path="/template" element={<Tem/>} />
             <Route path="*" element={<NotFound/>} />

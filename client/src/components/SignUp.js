@@ -88,7 +88,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor:  "rgb(14, 186, 201)" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -150,7 +150,7 @@ export default function SignUp() {
             </Grid>
 
             {error && <Alert variant="filled" severity="error"> {error}</Alert>}
-            {!isPending &&  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}> Sign Up </Button>}
+            {!isPending &&  <Button type="submit" style={{ backgroundColor: "rgb(14, 186, 201)"}}  fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}> Sign Up </Button>}
             {isPending &&  <Button type="submit" disabled fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}> Sign Up </Button>}
 
             <Grid container justifyContent="flex-end">

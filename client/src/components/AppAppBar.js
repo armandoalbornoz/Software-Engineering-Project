@@ -38,7 +38,7 @@ function AppAppBar({ mode, toggleColorMode }) {
 
   return (
     <div>
-      {location.pathname === "/signup" || location.pathname === "/signin" ? "" :  
+      {location.pathname === "/signup" || location.pathname === "/signin" || location.pathname === "/create" ? "" :  
 
       <AppBar
         position="fixed"
@@ -96,7 +96,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 </MenuItem>
                 <MenuItem sx={{ py: '6px', px: '12px' }}>
                   <Typography variant="body2" color="text.primary">
-                    <Link component={RouterLink} to="/create" variant="body"> Provide Information </Link>
+                    <Link component={RouterLink} to="/create" variant="body"> Add Record </Link>
                   </Typography>
                 </MenuItem>
                 <MenuItem sx={{ py: '6px', px: '12px' }}>

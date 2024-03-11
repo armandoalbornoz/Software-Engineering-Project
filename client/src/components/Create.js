@@ -25,7 +25,7 @@ const Create = () => {
             if (!res.ok)
             {
                 console.log(res);
-                throw Error("Could not fetch the data for that resource.")
+                throw Error("Could not send the data to the server.")
             } 
             setIsPending(false);
             navigate("/")

@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useFetchGet from "../customHooks/useGetFetch";
 import { useState } from "react";
+import { Grid } from "@mui/material";
 
 
 const UserMedInfo = () => {
@@ -34,7 +35,7 @@ const UserMedInfo = () => {
 
 
             { data && (
-                <article> 
+                <Grid item xs={12} md={6}>
                     <h2>Medical Information of {data.firstName} {data.lastName} </h2>
                     <div>
                        <p> Message: {data.message}</p>
@@ -45,7 +46,7 @@ const UserMedInfo = () => {
                     </div>
                    
                     <button onClick={handleDelete}> delete </button>
-                </article>
+                </Grid>
             )}
 
 

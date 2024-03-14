@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -14,7 +13,7 @@ import LogoCollection from './tempCom/LogoCollection';
 import Highlights from './Highlights';
 import Pricing from './tempCom/Pricing';
 import Features from './tempCom/Features';
-import Testimonials from './tempCom/Testimonials';
+import Records from './Records';
 import FAQ from './tempCom/FAQ';
 import Footer from './Footer';
 import getLPTheme from '../getLPTheme';
@@ -84,7 +83,7 @@ export default function LandingPage() {
         <LogoCollection />
         <Features />
         <Divider />
-        <Testimonials />
+        <Records />
         <Divider />
         <Highlights />
         <Divider />

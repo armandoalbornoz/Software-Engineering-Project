@@ -9,6 +9,12 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import {useNavigate} from "react-router-dom"
 import Highlights from './Highlights';import Divider from '@mui/material/Divider';
+import {
+  createTheme,
+  PaletteColorOptions,
+  ThemeProvider,
+} from '@mui/material/styles';
+
 
 
 
@@ -33,7 +39,7 @@ export default function Hero() {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'center',    
           pt: { xs: 14, sm: 20 },
           pb: { xs: 8, sm: 12 },
         }}
@@ -54,14 +60,13 @@ export default function Hero() {
               component="span"
               variant="h1"
               sx={{
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
+                color: "rgb(34, 190, 200)"
               }}
             >
               BMI Tracker
             </Typography>
           </Typography>
-          <Typography variant="body1" textAlign="center" color="text.secondary">
+          <Typography variant="body" textAlign="center" color="text.primary">
             Embark on a transformative journey with our cutting-edge BMI tracking app.
             <br/>
             Your ultimate companion in the quest for a healthier you. 
@@ -73,8 +78,8 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
-   
-            <Button variant="contained" onClick={() => navigate("/signup")} color="primary">
+            
+            <Button  type="submit" style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}}  onClick={() => navigate("/signup")}  >
               Start now
             </Button>
           </Stack>

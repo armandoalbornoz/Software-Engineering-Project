@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import {useLocation} from 'react-router-dom';
+import { Link as RouterLink, } from 'react-router-dom';
 
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -34,7 +35,7 @@ export default function Footer() {
 
   return (
   <div>
-  {location.pathname === "/signup" || location.pathname === "/signin" ? "" :  
+  {location.pathname === "/signup" || location.pathname === "/signin"||  location.pathname === "/create" ? ""  :  
 
     <Container
       sx={{
@@ -46,7 +47,6 @@ export default function Footer() {
         textAlign: { sm: 'center', md: 'left' },
       }}
     >
-
       <Box
         sx={{
           display: 'flex',
@@ -91,16 +91,17 @@ export default function Footer() {
           <Typography variant="body2" fontWeight={600}>
             Product
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link component={RouterLink} color="text.secondary" to="/">
             Home
           </Link>
-          <Link color="text.secondary" href="#">
-            Provide Information
+          <Link component={RouterLink} color="text.secondary" to="/create">
+            Add Record
           </Link>
-          <Link color="text.secondary" href="#">
+
+          <Link component={RouterLink} color="text.secondary" to="/signin">
             Sign In
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link component={RouterLink} color="text.secondary" to="/signup">
             Sign Up
           </Link>
   
@@ -115,7 +116,7 @@ export default function Footer() {
           <Typography variant="body2" fontWeight={600}>
             Company
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link component={RouterLink} color="text.secondary" to="/about">
             About us
           </Link>
         
@@ -131,7 +132,7 @@ export default function Footer() {
           <Typography variant="body2" fontWeight={600}>
             Legal
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link component={RouterLink} color="text.secondary" to="/terms">
             Terms
           </Link>
  
@@ -161,7 +162,7 @@ export default function Footer() {
           useFlexGap
           sx={{
             color: 'text.secondary',
-          }}
+          }}    
         >
           <IconButton
             color="inherit"

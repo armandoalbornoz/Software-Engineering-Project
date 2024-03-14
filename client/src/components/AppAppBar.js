@@ -34,7 +34,7 @@ function AppAppBar({ mode, toggleColorMode }) {
     setOpen(newOpen);
   };
 
-  console.log(location);
+  console.log(mode);
 
   return (
     <div>
@@ -91,25 +91,19 @@ function AppAppBar({ mode, toggleColorMode }) {
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem sx={{ py: '6px', px: '12px' }} >
                   <Typography variant="body2" color="text.primary">                  
-                    <Link component={RouterLink} to="/" variant="body"> Home </Link>
+                    <Link component={RouterLink} to="/" variant="body1"> Home </Link>
                   </Typography>
                 </MenuItem>
                 <MenuItem sx={{ py: '6px', px: '12px' }}>
                   <Typography variant="body2" color="text.primary">
-                    <Link component={RouterLink} to="/create" variant="body"> Add Record </Link>
+                    <Link component={RouterLink} to="/create" variant="body1"> Add Record </Link>
                   </Typography>
                 </MenuItem>
                 <MenuItem sx={{ py: '6px', px: '12px' }}>
                   <Typography variant="body2" color="text.primary">
-                    <Link component={RouterLink} to="/signin" variant="body"> Sign In</Link>
+                    <Link component={RouterLink} to="/records" variant="body1"> Records </Link>
                   </Typography>
                 </MenuItem>
-                <MenuItem  sx={{ py: '6px', px: '12px' }}>
-                  <Typography variant="body2" color="text.primary">
-                    <Link component={RouterLink} to="/signup" variant="body"> Sign Up</Link>
-                  </Typography>
-                </MenuItem>
-     
               </Box>
             </Box>
             <Box
@@ -119,10 +113,9 @@ function AppAppBar({ mode, toggleColorMode }) {
                 alignItems: 'center',
               }}
             >
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
                 color="primary"
-                variant="text"
+                style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}} 
                 size="small"
                 component="a"
                 onClick={() => navigate('/signin')}
@@ -133,7 +126,7 @@ function AppAppBar({ mode, toggleColorMode }) {
               </Button>
               <Button
                 color="primary"
-                variant="contained"
+                style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}} 
                 size="small"
                 component="a"
                 onClick={() => navigate('/signup')}
@@ -151,9 +144,5 @@ function AppAppBar({ mode, toggleColorMode }) {
   );
 }
 
-AppAppBar.propTypes = {
-  mode: PropTypes.oneOf(['dark', 'light']).isRequired,
-  toggleColorMode: PropTypes.func.isRequired,
-};
 
 export default AppAppBar;

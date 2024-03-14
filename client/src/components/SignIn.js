@@ -16,6 +16,37 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Divider from '@mui/material/Divider';
+import styled from "styled-components";
+
+
+const WhiteBorderTextField = styled(TextField)`
+  & label.Mui-focused {
+    color: rgb(14, 186, 201);
+  }
+
+  & .MuiOutlinedInput-root {
+    color: white;
+  }
+
+  & .MuiInput-underline:after {
+    border-bottom-color: rgb(14, 186, 201)  ;
+  }
+  & .MuiOutlinedInput-root {
+    & fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+    &:hover fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+    &.Mui-focused fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+  }
+`;
+
+
+
+
 
 
 function Copyright(props) {
@@ -35,13 +66,15 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+
+
 export default function SignIn() {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
 
     const [error, setError] = React.useState('')
     const [isPending, setIsPending] = React.useState(false)
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
 
 
     const handleSubmit = (e) =>
@@ -76,7 +109,7 @@ export default function SignIn() {
       <Container component="main" maxWidth="xs"
          sx={{
           pt: { xs: 14, sm: 15 },
-          pb: { xs: 8, sm: 5 },
+          pb: { xs: 8, sm: 30 },
         }}>
         <CssBaseline />
         <Box
@@ -87,17 +120,17 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-
-          <Avatar sx={{ m: 1, bgcolor: 'rgb(14, 186, 201)' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'rgb(54, 236, 201)' }}>
             <LockOutlinedIcon />
           </Avatar>
           
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color={"rgb(200,200,200)"}  >
             Sign in
           </Typography>
           
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
+            
+            <WhiteBorderTextField
               margin="normal"
               required
               fullWidth
@@ -105,11 +138,13 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }} 
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <TextField
+            
+            <WhiteBorderTextField
               margin="normal"
               required
               fullWidth
@@ -117,6 +152,8 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
+              InputLabelProps={{ style: { color: 'rgb(200, 200, 200)'} }} 
+
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -128,19 +165,18 @@ export default function SignIn() {
 
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body">
+                <Link href="#" variant="body" color={'rgb(200, 200, 200)'} underline='hover'>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link component={RouterLink} to="/signup" variant="body">
+                <Link component={RouterLink} to="/signup" color={'rgb(200, 200, 200)'} underline='hover' variant="body">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

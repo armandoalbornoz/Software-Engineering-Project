@@ -12,13 +12,14 @@ const useGetFetch = (url) => {
         .then(res => {
             if (!res.ok)
             {
-                console.log(res);
                 throw Error("Could not fetch the data for that resource.")
             }
             return res.json()
 
         })
         .then(data => {
+            console.log(data);
+
             setData(data)
             setIsPending(false)
             setError(null)

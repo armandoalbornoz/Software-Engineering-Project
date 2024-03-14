@@ -15,6 +15,34 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
+import styled from "styled-components";
+
+
+
+const WhiteBorderTextField = styled(TextField)`
+  & label.Mui-focused {
+    color: rgb(14, 186, 201);
+  }
+
+  & .MuiOutlinedInput-root {
+    color: white;
+  }
+
+  & .MuiInput-underline:after {
+    border-bottom-color: rgb(14, 186, 201)  ;
+  }
+  & .MuiOutlinedInput-root {
+    & fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+    &:hover fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+    &.Mui-focused fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+  }
+`;
 
 
 function Copyright(props) {
@@ -77,7 +105,7 @@ export default function SignUp() {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs" sx={{
           pt: { xs: 14, sm: 15 },
-          pb: { xs: 8, sm: 5 },
+          pb: { xs: 8, sm: 30 },
         }}>
         <CssBaseline />
         <Box
@@ -91,14 +119,15 @@ export default function SignUp() {
           <Avatar sx={{ m: 1, bgcolor:  "rgb(14, 186, 201)" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color={"rgb(200,200,200)"} >
             Sign up
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <WhiteBorderTextField
                   autoComplete="given-name"
+                  InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }} 
                   name="firstName"
                   required
                   fullWidth
@@ -110,9 +139,11 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <WhiteBorderTextField
                   required
                   fullWidth
+                  InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }} 
+
                   id="lastName"
                   label="Last Name"
                   name="lastName"
@@ -122,9 +153,10 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <WhiteBorderTextField
                   required
                   fullWidth
+                  InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }} 
                   id="email"
                   label="Email Address"
                   name="email"
@@ -134,8 +166,9 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <WhiteBorderTextField
                   required
+                  InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }} 
                   fullWidth
                   name="password"
                   label="Password"
@@ -155,14 +188,13 @@ export default function SignUp() {
 
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link component={RouterLink} to="/signin" variant="body">
+                <Link component={RouterLink} to="/signin" variant="body" color={'rgb(200, 200, 200)'} underline='hover' >
                   Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );

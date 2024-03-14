@@ -17,7 +17,33 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import AddIcon from '@mui/icons-material/Add';
+import styled from "styled-components";
 
+
+const WhiteBorderTextField = styled(TextField)`
+  & label.Mui-focused {
+    color: rgb(14, 186, 201);
+  }
+
+  & .MuiOutlinedInput-root {
+    color: white;
+  }
+
+  & .MuiInput-underline:after {
+    border-bottom-color: rgb(14, 186, 201)  ;
+  }
+  & .MuiOutlinedInput-root {
+    & fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+    &:hover fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+    &.Mui-focused fieldset {
+      border-color: rgb(14, 186, 201);
+    }
+  }
+`;
 
 function Copyright(props) {
   return (
@@ -78,7 +104,7 @@ export default function SignUp() {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs" sx={{
           pt: { xs: 14, sm: 15 },
-          pb: { xs: 8, sm: 5 },
+          pb: { xs: 8, sm: 40 },
         }}>
         <CssBaseline />
         <Box
@@ -92,21 +118,20 @@ export default function SignUp() {
           <Avatar sx={{ m: 1, bgcolor: "rgb(14, 186, 201)" }}>
             <AddIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color={"rgb(200,200,200)"}>
             Add Medical Record
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <WhiteBorderTextField
                   name="height"
                   required
                   fullWidth
+                  InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }}
                   id="height"
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">cm</InputAdornment>,
-                  }}                 
-                label="Height"
+                   
+                label="Height (cm)"
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
                   autoFocus
@@ -116,23 +141,22 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <WhiteBorderTextField
                   required
                   fullWidth
                   id="Weight"
                   type='number'
-                  label="Weight"
+                  label="Weight (kg)"
                   name="Weight"
-                  autoComplete="family-name"
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">cm</InputAdornment>,
-                  }}    
+                  autoComplete="family-name"  
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
+                  InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }}
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <WhiteBorderTextField
+                  InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }}
                   required
                   multiline
                   fullWidth

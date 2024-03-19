@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose, { mongo } from "mongoose";
 
-import {userRouter} from "./routes/users.js";
+import { userRouter } from "./src/routes/user.js";
 
 const app = express();
 
@@ -11,6 +11,8 @@ app.use(cors());
 
 app.use("/auth", userRouter);
 
-mongoose.connect("mongodb+srv://ehengber:BMITracker123@bmis.maiqzpx.mongodb.net/BMIs?retryWrites=true&w=majority&appName=BMIs")
+mongoose.connect(
+    "mongodb+srv://ehengber:BMITracker123@bmis.maiqzpx.mongodb.net/BMIs?retryWrites=true&w=majority&appName=BMIs"
+);
 
 app.listen(3001, () => console.log("SERVER STARTED!"));

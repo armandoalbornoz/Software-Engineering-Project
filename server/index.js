@@ -12,7 +12,7 @@ app.use(cors());
 app.use("/auth", userRouter);
 
 mongoose.connect(
-    "mongodb+srv://ehengber:BMITracker123@bmis.maiqzpx.mongodb.net/BMIs?retryWrites=true&w=majority&appName=BMIs"
+    "mongodb+srv://ehengber:BMITracker123@bmis.maiqzpx.mongodb.net/bmis?retryWrites=true&w=majority&appName=BMIs"
 );
 
 app.listen(3001, () => console.log("SERVER STARTED!"));

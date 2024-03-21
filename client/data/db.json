@@ -1,0 +1,24 @@
+{
+  "medicalInfo": [
+    {
+      "firstName": "Armando",
+      "lastName": "Albornoz",
+      "message": "This is  a message",
+      "height": "160",
+      "weight": "50",
+      "BMI": "21.1",
+      "sex": "male",
+      "id": "1"
+    },
+    {
+      "firstName": "Arnold",
+      "lastName": "Schwarzenegger",
+      "message": "I am the president",
+      "height": "30",
+      "weight": "400",
+      "BMI": "231.1",
+      "sex": "female",
+      "id": "2"
+    }
+  ]
+}

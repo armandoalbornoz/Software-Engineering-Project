@@ -58,7 +58,6 @@ function App() {
         </Box>
     </Router>
     </ThemeProvider>
-  );
-}
+  );}
 
 export default App;

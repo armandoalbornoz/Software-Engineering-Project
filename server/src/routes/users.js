@@ -7,6 +7,11 @@ import { UserModel } from "../models/Users.js";
 
 router.post("/register", async (req, res) => {
     const {username, password} = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({message: "Both username and password are required"});
+    }
+
     const user = await UserModel.findOne({username});
 
     if (user) {

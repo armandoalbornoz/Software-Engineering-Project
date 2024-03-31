@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link as RouterLink, useLocation, useNavigate, } from 'react-router-dom';
 import { Container, Typography, Button, CssBaseline } from '@mui/material';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom'; 
+
 
 const RootContainer = styled(Container)({
   display: 'flex',
@@ -41,15 +43,29 @@ const BackToHomeButton = styled(Button)({
 });
 
 const NotFoundPage = () => {
+
+  const navigate  = useNavigate();
+
   return (
     <RootContainer>
       <CssBaseline />
       <ErrorContainer>
         <ErrorCode variant="h1">404</ErrorCode>
         <ErrorMessage variant="h5">Oops! Page not found.</ErrorMessage>
-        <BackToHomeButton component={Link} to="/">
-          Back to Home
-        </BackToHomeButton>
+
+        <Button
+                color="primary"
+                style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}} 
+                size="small"
+                component="a"
+                onClick={() => navigate('/')}
+                target="_blank"
+              >
+
+Back Home
+              </Button>
+
+ 
       </ErrorContainer>
     </RootContainer>
   );

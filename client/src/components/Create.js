@@ -4,20 +4,15 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { Link as RouterLink, } from 'react-router-dom';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import InputAdornment from '@mui/material/InputAdornment';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import AddIcon from '@mui/icons-material/Add';
 import styled from "styled-components";
+import {useAuthContext} from '../customHooks/useAuthContext'
 
 
 const WhiteBorderTextField = styled(TextField)`
@@ -45,28 +40,19 @@ const WhiteBorderTextField = styled(TextField)`
   }
 `;
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        BMI Tracker
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function Create() {
     
     const [height, setHeight] = React.useState('')
     const [weight, setWeight] = React.useState('')
     const [message, setMessage] = React.useState('')
+    const {user} = useAuthContext()
+
 
     const [error, setError] = React.useState('')
     const [isPending, setIsPending] = React.useState(false)
@@ -76,25 +62,38 @@ export default function SignUp() {
     const handleSubmit = (e) =>
     {
         e.preventDefault();  // prevent page refresh
+
+        if(!user)
+        {
+          setError("You must be logged in")
+          return
+        }
+
         const data = {height, weight, message}
         setIsPending(true);
 
-        fetch("http://localhost:8000/medicalInfo", {
+        fetch("http://localhost:3001/records", {
             method: "POST",
-            headers: {"Content-Type":"application/json"},
+            
+            headers: {
+              "Content-Type":"application/json",
+              'Authorization': `Bearer ${user.token}`
+            },
             body: JSON.stringify(data)
         })
         .then((res) => {
             if (!res.ok)
             {
                 console.log(res);
-                throw Error("Could not send the data to the server.")
+                setIsPending(false);
+                throw Error("Height and Weight are required")
             } 
             setIsPending(false);
-            navigate("/")
+            navigate("/records")
 
         })
         .catch((err) =>{
+            setIsPending(false);
             setError(err.message)
         })
 
@@ -157,7 +156,6 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <WhiteBorderTextField
                   InputLabelProps={{ style: { color: 'rgb(200, 200, 200)' } }}
-                  required
                   multiline
                   fullWidth
                   id="Message"

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { Link as RouterLink, useLocation, useNavigate, } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
@@ -7,15 +6,11 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
-import Drawer from '@mui/material/Drawer';
-import MenuIcon from '@mui/icons-material/Menu';
-import ToggleColorMode from './ToggleColorMode';
 import {useParams} from "react-router-dom";
-
-
+import { useLogout } from '../customHooks/useLogout';
+import { useAuthContext } from '../customHooks/useAuthContext';
 
 const logoStyle = {
   width: '140px',
@@ -23,18 +18,13 @@ const logoStyle = {
   cursor: 'pointer',
 };
 
-function AppAppBar({ mode, toggleColorMode }) {
-  const [open, setOpen] = React.useState(false);
-  const {param} = useParams() //Grabs the url param
+function AppAppBar() {
+  //const {param} = useParams() //Grabs the url param
   const navigate  = useNavigate();
   const location  = useLocation();
+  const {logout} = useLogout()
+  const {user} = useAuthContext()
 
-
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
-
-  console.log(mode);
 
   return (
     <div>
@@ -58,18 +48,12 @@ function AppAppBar({ mode, toggleColorMode }) {
               justifyContent: 'space-between',
               flexShrink: 0,
               borderRadius: '999px',
-              bgcolor:
-                theme.palette.mode === 'light'
-                  ? 'rgba(255, 255, 255, 0.4)'
-                  : 'rgba(0, 0, 0, 0.4)',
+              bgcolor: theme.palette.mode ===  'rgba(0, 0, 0, 0.4)',
               backdropFilter: 'blur(24px)',
               maxHeight: 40,
               border: '1px solid',
               borderColor: 'divider',
-              boxShadow:
-                theme.palette.mode === 'light'
-                  ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
-                  : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
+              boxShadow: theme.palette.mode === '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
             })}
           >
             <Box
@@ -94,6 +78,8 @@ function AppAppBar({ mode, toggleColorMode }) {
                     <Link component={RouterLink} to="/" variant="body1"> Home </Link>
                   </Typography>
                 </MenuItem>
+                {user && 
+                <>
                 <MenuItem sx={{ py: '6px', px: '12px' }}>
                   <Typography variant="body2" color="text.primary">
                     <Link component={RouterLink} to="/create" variant="body1"> Add Record </Link>
@@ -104,6 +90,8 @@ function AppAppBar({ mode, toggleColorMode }) {
                     <Link component={RouterLink} to="/records" variant="body1"> Records </Link>
                   </Typography>
                 </MenuItem>
+                </>
+                }
               </Box>
             </Box>
             <Box
@@ -113,7 +101,8 @@ function AppAppBar({ mode, toggleColorMode }) {
                 alignItems: 'center',
               }}
             >
-              <Button
+              
+            {!user &&<><Button
                 color="primary"
                 style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}} 
                 size="small"
@@ -133,7 +122,20 @@ function AppAppBar({ mode, toggleColorMode }) {
                 target="_blank"
               >
                 Sign up
-              </Button>
+              </Button></> }
+
+              {user && <Button
+                color="primary"
+                style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}} 
+                size="small"
+                component="a"
+                onClick={() => logout()}
+                target="_blank"
+              >
+                Log out
+              </Button>}
+
+              
             </Box>
           
           </Toolbar>

@@ -1,35 +1,45 @@
 import { useEffect } from "react"
 import { useState} from "react"
+import {useAuthContext} from '../customHooks/useAuthContext'
 
 
 const useGetFetch = (url) => {
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null)
+    const {user} = useAuthContext()
 
     useEffect(() => {
-        fetch(url)
-        .then(res => {
-            if (!res.ok)
-            {
-                throw Error("Could not fetch the data for that resource.")
-            }
-            return res.json()
 
-        })
-        .then(data => {
-            console.log(data);
-
-            setData(data)
-            setIsPending(false)
-            setError(null)
-        })
-        .catch((err) => {
-            setError(err.message)
-            setIsPending(false)
-        })
-
-    }, [url])
+        if(user)
+        {
+            fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            .then(res => {
+                if (!res.ok)
+                {
+                    throw Error("Could not fetch the data for that resource.")
+                }
+                return res.json()
+    
+            })
+            .then(data => {
+                console.log(data);
+    
+                setData(data)
+                setIsPending(false)
+                setError(null)
+            })
+            .catch((err) => {
+                setError(err.message)
+                setIsPending(false)
+            })
+    
+        }
+    }, [url,user])
 
 
     return {data, isPending, error}

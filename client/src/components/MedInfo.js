@@ -5,6 +5,10 @@ import { styled } from '@mui/system';
 import { useNavigate, useParams } from "react-router-dom";
 import useFetchGet from "../customHooks/useGetFetch";
 import { useState } from "react";
+import Button from '@mui/material/Button';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import {useAuthContext} from '../customHooks/useAuthContext'
+
 
 // Styled components
 const StyledContainer = styled(Container)({
@@ -19,14 +23,26 @@ const StyledPaper = styled(Paper)({
 // BlogPost component
 const MedInfo = () => {
   const {id} = useParams() //Grabs the url param
-  const {data: record, error, isPending} = useFetchGet(`http://localhost:8000/medicalInfo/${id}`)
+  const {data: record, error, isPending} = useFetchGet(`http://localhost:3001/records/${id}`)
   const  [deleteErr, setDeleteErr]  = useState("");
+  const {user} = useAuthContext()
+
   const navigate = useNavigate()
+  
 
 
   const handleDelete = () => {
-    fetch('http://localhost:8000/medicalInfo/' + id,{
-        method: 'DELETE'
+
+    if(!user)
+    {
+      return
+    }
+
+    fetch('http://localhost:3001/records/' + id,{
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
     })
     .then((res) => {
         if (!res.ok)
@@ -34,8 +50,8 @@ const MedInfo = () => {
             console.log(res);
             throw Error("Could not delete the data for that resource.")
         }
-        navigate('/')
-    })
+        navigate("/records")
+      })
     .catch((err) => {
         setDeleteErr(err.message)
     })
@@ -70,6 +86,20 @@ const MedInfo = () => {
         <Typography variant="h6" paragraph>
           {`Provided Message: ${record.message}`}
         </Typography>
+        <Typography variant="h6" paragraph>
+          {`Created: ${formatDistanceToNow(new Date(record.createdAt), {addSuffix: true})}`}
+        </Typography>
+
+        <Button
+        color="primary"
+        style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}} 
+        size="small"
+        component="a"
+        onClick={handleDelete}
+        target="_blank"
+        >
+          Delete
+        </Button>
    
 
       </StyledPaper>

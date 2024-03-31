@@ -3,19 +3,10 @@ import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import {useNavigate} from "react-router-dom"
 import Highlights from './Highlights';import Divider from '@mui/material/Divider';
-import {
-  createTheme,
-  PaletteColorOptions,
-  ThemeProvider,
-} from '@mui/material/styles';
-
-
 
 
 export default function Hero() {
@@ -28,9 +19,7 @@ export default function Hero() {
       sx={(theme) => ({
         width: '100%',
         backgroundImage:
-          theme.palette.mode === 'light'
-            ? 'linear-gradient(180deg, #CEE5FD, #FFF)'
-            : `linear-gradient(#02294F, ${alpha('#090E10', 0.0)})`,
+          theme.palette.mode ===  `linear-gradient(#02294F, ${alpha('#090E10', 0.0)})`,
         backgroundSize: '100% 20%',
         backgroundRepeat: 'no-repeat',
       })}
@@ -93,9 +82,7 @@ export default function Hero() {
             height: { xs: 200, sm: 700 },
             width: '100%',
             backgroundImage:
-              theme.palette.mode === 'light'
-                ? 'url("/static/images/templates/templates-images/hero-light.png")'
-                : 'url("/static/images/templates/templates-images/hero-dark.png")',
+              theme.palette.mode === 'url("/static/images/templates/templates-images/hero-dark.png")',
             backgroundSize: 'cover',
             borderRadius: '10px',
             outline: '1px solid',

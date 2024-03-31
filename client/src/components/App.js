@@ -1,57 +1,41 @@
 import * as React from 'react';
-import './Navbar'
-import Navbar from './Navbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Home from './Home';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import Create from './Create';
 import MedInfo from './MedInfo'
-import UserMedInfo from './UserMedInfo';
 import NotFound from './NotFound';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
-import Tem from './Tem'
+import Tem from './tempCom/Tem'
 import AppAppBar from './AppAppBar';
 import Footer from './Footer';
 import getLPTheme from '../getLPTheme';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Records from './Records'
-import Highlights from './Highlights';
 import Hero from './Hero';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import {useLocation} from 'react-router-dom';
+import {useAuthContext} from '../customHooks/useAuthContext'
 
 
 
 function App() {
-  const [mode, setMode] = React.useState('dark');
-  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
-  const LPtheme = createTheme(getLPTheme(mode));
-  const defaultTheme = createTheme({ palette: { mode } });
-
-
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+  const LPtheme = createTheme(getLPTheme('dark'));
+  const {user} = useAuthContext()
 
   return (
-    <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}> 
+    <ThemeProvider theme={LPtheme}> 
     <CssBaseline />
 
     <Router>
-        <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
+        <AppAppBar/>
         <Box sx={{ bgcolor: 'background.default' }}>
           <Routes>
-            <Route path="/signin" element={<SignIn/>} />
-            <Route path="/signup" element={<SignUp/>} />
+            <Route path="/signin" element={user ? <Navigate to={"/"}/> : <SignIn/> } />
+            <Route path="/signup" element={user ? <Navigate to={"/"}/>  : <SignUp/>} />
             <Route path="/" element={<Hero/>} />
-            <Route path="/create" element={<Create/>} />
-            <Route path="/records/:id" element={<MedInfo/>} />
-            <Route path="/template" element={<Tem/>} />
-            <Route path="/records" element={<Records/>} />
+            <Route path="/create" element={user ? <Create/> :  <Navigate to={"/signin"}/>} />
+            <Route path="/records/:id" element={user ? <MedInfo/> : <Navigate to={"/signin"}/>} />
+            <Route path="/records" element={user ?  <Records/> : <Navigate to={"/signin"}/>} />
             <Route path="*" element={<NotFound/>} />
           </Routes>
         <Footer/>

@@ -1,18 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import {useLocation} from 'react-router-dom';
 import { Link as RouterLink, } from 'react-router-dom';
-
 import FacebookIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/X';
+import { useAuthContext } from '../customHooks/useAuthContext';
 
 const logoStyle = {
   width: '140px',
@@ -31,6 +27,8 @@ function Copyright() {
 
 export default function Footer() {
   const location  = useLocation();
+  const {user} = useAuthContext()
+
 
 
   return (
@@ -94,16 +92,22 @@ export default function Footer() {
           <Link component={RouterLink} color="text.secondary" to="/">
             Home
           </Link>
+          {user &&
           <Link component={RouterLink} color="text.secondary" to="/create">
             Add Record
           </Link>
+          }
 
+          {!user &&
+          <>
           <Link component={RouterLink} color="text.secondary" to="/signin">
             Sign In
           </Link>
           <Link component={RouterLink} color="text.secondary" to="/signup">
             Sign Up
           </Link>
+          </>
+          }
   
         </Box>
         <Box

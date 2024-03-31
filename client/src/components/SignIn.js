@@ -1,11 +1,8 @@
 import * as React from 'react';
-import {useNavigate} from "react-router-dom"
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import { Link as RouterLink, } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -15,9 +12,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
-import Divider from '@mui/material/Divider';
 import styled from "styled-components";
-
+import { useLogin } from '../customHooks/useLogin';
 
 const WhiteBorderTextField = styled(TextField)`
   & label.Mui-focused {
@@ -44,24 +40,6 @@ const WhiteBorderTextField = styled(TextField)`
   }
 `;
 
-
-
-
-
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        BMI Tracker
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
@@ -71,37 +49,13 @@ const defaultTheme = createTheme();
 export default function SignIn() {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
-
-    const [error, setError] = React.useState('')
-    const [isPending, setIsPending] = React.useState(false)
-    const navigate = useNavigate();    
+    const {login, error, isPending} = useLogin()
 
 
-    const handleSubmit = (e) =>
+    const handleSubmit = async (e) =>
     {
-        e.preventDefault();  // prevent page refresh
-        const data = {email, password}
-        setIsPending(true);
-
-        fetch("http://localhost:8000/signin", {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(data)
-        })
-        .then((res) => {
-            if (!res.ok)
-            {
-                console.log(res);
-                throw Error("Could not send the data to the server.")
-            } 
-            setIsPending(false);
-            navigate("/")
-
-        })
-        .catch((err) =>{
-            setError(err.message)
-        })
-
+      e.preventDefault()
+      await login(email, password)
     }
 
   return (

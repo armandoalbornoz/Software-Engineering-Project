@@ -7,16 +7,16 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import AppAppBar from './AppAppBar';
-import Hero from './Hero';
-import LogoCollection from './tempCom/LogoCollection';
-import Highlights from './Highlights';
-import Pricing from './tempCom/Pricing';
-import Features from './tempCom/Features';
-import Records from './Records';
-import FAQ from './tempCom/FAQ';
-import Footer from './Footer';
-import getLPTheme from '../getLPTheme';
+import AppAppBar from '../AppAppBar';
+import Hero from '../Hero';
+import LogoCollection from './LogoCollection';
+import Highlights from '../Highlights';
+import Pricing from './Pricing';
+import Features from './Features';
+import Records from '../Records';
+import FAQ from './FAQ';
+import Footer from '../Footer';
+import getLPTheme from '../../getLPTheme';
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (

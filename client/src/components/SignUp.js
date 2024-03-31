@@ -4,8 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import { Link as RouterLink, } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -16,8 +14,12 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import styled from "styled-components";
-
-
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import { signup, error, isPending, useSignup } from "../customHooks/useSignup";
 
 const WhiteBorderTextField = styled(TextField)`
   & label.Mui-focused {
@@ -44,20 +46,6 @@ const WhiteBorderTextField = styled(TextField)`
   }
 `;
 
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        BMI Tracker
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
@@ -68,37 +56,16 @@ export default function SignUp() {
     const [lastName, setLastName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+    const [sex, setSex] = React.useState('')
+    const {signup, error, isPending} = useSignup()
 
-    const [error, setError] = React.useState('')
-    const [isPending, setIsPending] = React.useState(false)
     const navigate = useNavigate();
 
 
-    const handleSubmit = (e) =>
+    const handleSubmit = async (e) =>
     {
         e.preventDefault();  // prevent page refresh
-        const data = {name, lastName, email, password}
-        setIsPending(true);
-
-        fetch("http://localhost:8000/singup", {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(data)
-        })
-        .then((res) => {
-            if (!res.ok)
-            {
-                console.log(res);
-                throw Error("Could not send the data to the server.")
-            } 
-            setIsPending(false);
-            navigate("/")
-
-        })
-        .catch((err) =>{
-            setError(err.message)
-        })
-
+        await signup(name, lastName, email, password, sex)
     }
 
   return (
@@ -178,6 +145,22 @@ export default function SignUp() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <FormLabel id="demo-radio-buttons-group-label" sx={{color:'rgb(200, 200, 200)' , }}>Sex</FormLabel>
+                <RadioGroup
+                  onChange={(e) => setSex(e.target.value)}
+                  row
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  sx={{color:'rgb(200, 200, 200)' , }}
+                >
+                  <FormControlLabel value="female"  control={<Radio sx={{color:"rgb(14, 186, 201)" , }}/>} label="Female"  sx={{color:'rgb(200, 200, 200)' , }}/>
+                  <FormControlLabel value="male"   control={<Radio sx={{color:"rgb(14, 186, 201)" , }}/>} label="Male"    sx={{color:'rgb(200, 200, 200)' , }}/>
+
+
+                </RadioGroup>
+
               </Grid>
          
             </Grid>

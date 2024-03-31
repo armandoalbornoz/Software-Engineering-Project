@@ -1,15 +1,20 @@
 import express from "express";
 import { RecordModel } from "../models/Records.js";
 import mongoose from "mongoose";
-
+import {auth} from "../middleware/auth.js"
 
 const router = express.Router()
+
+
+// Requires authentication for routes
+router.use(auth)
 
 // Get all records
 router.get('/', async (req , res) => {
     try
     {
-        const records = await RecordModel.find({}).sort({createdAt: -1})
+        const user_id = req.user._id
+        const records = await RecordModel.find({user_id}).sort({createdAt: -1})
         res.status(200).json(records)
     }
     catch (err) 
@@ -50,7 +55,8 @@ router.post('/', async (req , res) => {
     const {height, weight, message} = req.body
     try
     {
-        const record = await RecordModel.create({height,weight,message})
+        const user_id = req.user._id
+        const record = await RecordModel.create({height,weight,message,user_id})
         res.status(200).json(record)
     }
     catch (err) 

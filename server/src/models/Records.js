@@ -15,6 +15,10 @@ const recordSchema = new Schema({
     },
     message: {
         type: String,
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 }, {timestamps: true})
 

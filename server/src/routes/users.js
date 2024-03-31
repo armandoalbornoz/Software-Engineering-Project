@@ -19,7 +19,7 @@ router.post("/signup", async (req, res) => {
         //create token and send
         const token = createToken(user._id)
         
-        res.status(200).json({email, token});
+        res.status(200).json({email, name, lastName, sex, token});
     }
     catch (err) {
         return res.status(400).json({message: err.message});
@@ -30,11 +30,12 @@ router.post("/login", async (req, res) => {
     const {email, password} = req.body;
        try{
         const user = await UserModel.login(email, password)
+        const {name, lastName, sex} = user 
 
         //create token and send
         const token = createToken(user._id)
         
-        res.status(200).json({email, token});
+        res.status(200).json({email, name, lastName, sex, token});
     }
     catch (err) {
         return res.status(400).json({message: err.message});

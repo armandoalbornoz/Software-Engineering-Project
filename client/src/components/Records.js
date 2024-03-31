@@ -8,10 +8,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import {Link} from 'react-router-dom'
 import useFetch from '../customHooks/useGetFetch'
+import {useAuthContext} from '../customHooks/useAuthContext'
 
 
 export default function Records() {
   const {data: medicaldata, isPending, error} = useFetch("http://localhost:3001/records")
+  const {user} = useAuthContext()
 
   return (
 
@@ -69,7 +71,7 @@ export default function Records() {
                 }}
               >
                 <CardHeader
-                  title={`${record.firstName} ${record.lastName}`}
+                  title={`${user.name} ${user.lastName}`}
                 />
               </Box>
             </Card>

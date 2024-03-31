@@ -12,7 +12,6 @@ export const useSignup = () => {
     const signup = async (name, lastName, email, password, sex)  => {
         setIsPending(true)
         setError('')
-       // console.log(name, lastName, email, password,sex );
 
             const response = await fetch("http://localhost:3001/auth/signup", {
                 method: "POST",

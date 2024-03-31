@@ -29,9 +29,9 @@ const MedInfo = () => {
 
   const navigate = useNavigate()
   
-
-
   const handleDelete = () => {
+
+    console.log(user);
 
     if(!user)
     {
@@ -47,7 +47,6 @@ const MedInfo = () => {
     .then((res) => {
         if (!res.ok)
         {
-            console.log(res);
             throw Error("Could not delete the data for that resource.")
         }
         navigate("/records")
@@ -69,10 +68,10 @@ const MedInfo = () => {
     
       <StyledPaper>
         <Typography variant="h4" gutterBottom>
-          {`${record.firstName} ${record.lastName}`}
+          {`${user.name} ${user.lastName}`}
         </Typography>
         <Typography variant="h6" paragraph>
-          {`Sex: ${record.sex}`}
+          {`Sex: ${user.sex}`}
         </Typography>
         <Typography variant="h6" paragraph>
           {`Height: ${record.height/ 100}m `}
@@ -81,7 +80,7 @@ const MedInfo = () => {
           {`Weight: ${record.weight}kg`}
         </Typography>
         <Typography variant="h6" paragraph>
-          {`BMI: ${record.BMI}`}
+          {`BMI: ${ record.weight/(record.height * record.height ) * 10000 }`}
         </Typography>
         <Typography variant="h6" paragraph>
           {`Provided Message: ${record.message}`}

@@ -59,9 +59,6 @@ export default function SignUp() {
     const [sex, setSex] = React.useState('')
     const {signup, error, isPending} = useSignup()
 
-    const navigate = useNavigate();
-
-
     const handleSubmit = async (e) =>
     {
         e.preventDefault();  // prevent page refresh

@@ -14,6 +14,7 @@ import bmiLogo from './images/BMI_Tracker.png'
 const logoStyle = {
   width: '140px',
   height: 'auto',
+  padding: '10px',
 };
 
 function Copyright() {
@@ -73,11 +74,14 @@ export default function Footer() {
               />
             </Box>
             <Typography variant="body2" fontWeight={600} gutterBottom>
-              For a better Health
+              For better health
             </Typography>
+            <Box sx={{ maxWidth: '300px' }}>
             <Typography variant="body2" color="text.secondary" mb={2}>
-              Wite stuff to fill this horrible  empty space
+            Monitor your BMI, set personalized goals, and receive tailored recommendations to achieve lasting results. 
+            Take charge of your health journey and unlock a happier, healthier you today.
             </Typography>
+            </Box>
           </Box>
         </Box>
         <Box

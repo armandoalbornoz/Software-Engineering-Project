@@ -142,6 +142,23 @@ export default function SignUp() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                 <Typography component="h6" color={"rgb(200,200,200)"} style={{display: 'flex', flexDirection: 'column', marginTop: 10}}>
+                    <Typography>
+                      Password must include:
+                    </Typography>
+                    <Typography>
+                      &#x2022; At least 8 characters
+                    </Typography>
+                    <Typography>
+                      &#x2022; Capital and lowercase letter
+                    </Typography>
+                    <Typography>
+                      &#x2022; Number
+                    </Typography>
+                    <Typography>
+                      &#x2022; Special character
+                    </Typography>
+                 </Typography>
               </Grid>
               <Grid item xs={12}>
                 <FormLabel id="demo-radio-buttons-group-label" sx={{color:'rgb(200, 200, 200)' , }}>Sex</FormLabel>
@@ -162,7 +179,7 @@ export default function SignUp() {
          
             </Grid>
 
-            {error && <Alert variant="filled" severity="error"> {error}</Alert>}
+            {error && <Alert variant="filled" severity="error">{error}</Alert>}
             {!isPending &&  <Button type="submit" style={{ backgroundColor: "rgb(14, 186, 201)"}}  fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}> Sign Up </Button>}
             {isPending &&  <Button type="submit" disabled fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}> Sign Up </Button>}
 

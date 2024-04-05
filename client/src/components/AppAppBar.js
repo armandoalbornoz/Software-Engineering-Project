@@ -11,11 +11,13 @@ import MenuItem from '@mui/material/MenuItem';
 import {useParams} from "react-router-dom";
 import { useLogout } from '../customHooks/useLogout';
 import { useAuthContext } from '../customHooks/useAuthContext';
+import bmilogo from './images/BMI_Tracker.png'
 
 const logoStyle = {
   width: '140px',
   height: 'auto',
   cursor: 'pointer',
+  padding: '15px',
 };
 
 function AppAppBar() {
@@ -67,10 +69,11 @@ function AppAppBar() {
             >
               <img
                 src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  bmilogo
                 }
                 style={logoStyle}
-                alt="logO"
+                alt="logo"
+                pad
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem sx={{ py: '6px', px: '12px' }} >

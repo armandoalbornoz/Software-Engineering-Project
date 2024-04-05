@@ -9,11 +9,25 @@ import Grid from '@mui/material/Grid';
 import {Link} from 'react-router-dom'
 import useFetch from '../customHooks/useGetFetch'
 import {useAuthContext} from '../customHooks/useAuthContext'
+import { useState } from 'react';
 
 
 export default function Records() {
   const {data: medicaldata, isPending, error} = useFetch("http://localhost:3001/records")
   const {user} = useAuthContext()
+  const [ recordPage, setRecordPage ] = useState(1)
+
+  const recordPageNext = () => {
+    const maxPageNumber = Math.ceil(medicaldata.length / 3)
+    if (recordPage === maxPageNumber){return}
+    setRecordPage(recordPage + 1)
+  }
+
+  const recordPagePrev = () => {
+    const minPageNumber = 1
+    if (recordPage === minPageNumber){return}
+    setRecordPage(recordPage - 1)
+  }
 
   return (
 
@@ -42,9 +56,22 @@ export default function Records() {
         </Typography>
  
       </Box>
+      <Box
+        sx={{
+          fontSize: 55, 
+          width: 60, 
+          display: 'flex', 
+          flexDirection: 'row', 
+          justifyContent: 'space-between',
+          alignSelf: 'start',
+        }}
+      >
+        <Box style={{cursor: 'pointer'}} onClick={recordPagePrev}>&#8249;</Box>
+        <Box style={{cursor: 'pointer'}} onClick={recordPageNext}>&#8250;</Box>
+      </Box>
       {medicaldata && 
       <Grid container spacing={2}>
-        {medicaldata.map((record, index) => (
+        {medicaldata.slice((recordPage - 1) * 3, (recordPage - 1) * 3 + 3).map((record, index) => (
           <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex' }} >
             <Link to={`/records/${record._id}`} style={{width:'100%', height:'100%', textDecoration: "none"}}>
             <Card

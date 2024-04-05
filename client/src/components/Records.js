@@ -18,7 +18,7 @@ export default function Records() {
   const [ recordPage, setRecordPage ] = useState(1)
 
   const recordPageNext = () => {
-    const maxPageNumber = Math.ceil(medicaldata.length / 3)
+    const maxPageNumber = Math.ceil(medicaldata.length / 10)
     if (recordPage === maxPageNumber){return}
     setRecordPage(recordPage + 1)
   }
@@ -71,7 +71,7 @@ export default function Records() {
       </Box>
       {medicaldata && 
       <Grid container spacing={2}>
-        {medicaldata.slice((recordPage - 1) * 3, (recordPage - 1) * 3 + 3).map((record, index) => (
+        {medicaldata.slice((recordPage - 1) * 10, (recordPage - 1) * 10 + 10).map((record, index) => (
           <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex' }} >
             <Link to={`/records/${record._id}`} style={{width:'100%', height:'100%', textDecoration: "none"}}>
             <Card

@@ -7,11 +7,23 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import {useNavigate} from "react-router-dom"
 import Highlights from './Highlights';import Divider from '@mui/material/Divider';
+import bmiLogo from './images/BMI_Logo.png'
+import { useAuthContext } from '../customHooks/useAuthContext';
 
 
 export default function Hero() {
 
   const navigate = useNavigate();
+  const {user} = useAuthContext()
+
+  const handleButtonClick = () => {
+    console.log("test")
+    if (!user) {
+      navigate("/signup");
+    } else {
+      navigate("/create");
+    }
+  };
 
   return (
     <Box
@@ -68,34 +80,24 @@ export default function Hero() {
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
             
-            <Button  type="submit" style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}}  onClick={() => navigate("/signup")}  >
+            <Button  type="submit" style={{ color: "white", backgroundColor: "rgb(70, 120, 140)"}}  
+              onClick={ handleButtonClick }  >
               Start now
             </Button>
           </Stack>
 
         </Stack>
         <Box
-          id="image"
-          sx={(theme) => ({
-            mt: { xs: 8, sm: 10 },
-            alignSelf: 'center',
-            height: { xs: 200, sm: 700 },
-            width: '100%',
-            backgroundImage:
-              theme.palette.mode === 'url("/static/images/templates/templates-images/hero-dark.png")',
-            backgroundSize: 'cover',
-            borderRadius: '10px',
-            outline: '1px solid',
-            outlineColor:
-              theme.palette.mode === 'light'
-                ? alpha('#BFCCD9', 0.5)
-                : alpha('#9CCCFC', 0.1),
-            boxShadow:
-              theme.palette.mode === 'light'
-                ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
-                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
-          })}
+            
         />
+
+              <img
+                src={
+                  bmiLogo
+                }
+                alt="logo"
+                pad
+              />
       </Container>
       <Divider />
       <Highlights />
@@ -103,6 +105,7 @@ export default function Hero() {
 
 
     </Box>
+
     
   );
 }

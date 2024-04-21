@@ -10,10 +10,10 @@ This README provides an overview of the structure and content of the BMI Tracker
 - [BMI TRACKER](#bmi-tracker)
 - [Table of Contents](#table-of-contents)
 - [Project Content Structure](#project-content-structure)
-    - [client](#client-)
-    - [client-content](#client-content)
-    - [server](#server-)
-    - [server-content](#server-content)
+    - [Client Overview](#client-overview)
+    - [Client Content](#client-content)
+    - [Server](#server-overview)
+    - [Server Content](#server-content)
 - [Application Structure](#application-structure)
 - [Contributors](#contributors)
 
@@ -24,8 +24,8 @@ This README provides an overview of the structure and content of the BMI Tracker
 The BMI Tracker codebase is organized into two main directories, client, and server
 each is responsible for different parts of the application.
 
-### Client:
-<a name="client"></a>
+### Client Overview
+<a name="client-overview"></a>
 
 - The frontend of the application is built using React.js
 
@@ -46,8 +46,8 @@ each is responsible for different parts of the application.
     - getLPTheme.js: JavaScript file for getting the LP theme.
     - index.js: Entry point for the frontend application.
 
-### Server: 
-<a name="server"></a>
+### Server Overview
+<a name="server-overview"></a>
 
 - The backend is implemented using Node.js and Express.js framework. 
 

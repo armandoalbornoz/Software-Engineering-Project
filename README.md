@@ -25,7 +25,7 @@ The BMI Tracker codebase is organized into two main directories, client, and ser
 each is responsible for different parts of the application.
 
 ### Client:
-<a name="client"></a>
+<a name="client-"></a>
 
 - The frontend of the application is built using React.js
 
@@ -47,7 +47,7 @@ each is responsible for different parts of the application.
     - index.js: Entry point for the frontend application.
 
 ### Server: 
-<a name="server"></a>
+<a name="server-"></a>
 
 - The backend is implemented using Node.js and Express.js framework. 
 

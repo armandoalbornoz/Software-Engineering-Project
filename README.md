@@ -71,5 +71,10 @@ will finish today - ross
 
 ## Contributors
 <a name="contributors"></a>
+- Armando Albornoz: Project Manager
 
-will finish today - ross
+- Eric Hengber: Srum Master
+
+- Jiho Lee: Developer
+
+- Christopher Brierley: Developer

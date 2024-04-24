@@ -56,9 +56,45 @@ each is responsible for different parts of the application.
   - index.js: Entry point for the backend application.
 
 ## Application Blueprint
-<a name="application-structure"></a>
-- Will finish today - ross
-- 
+
+```
+SWE_Project
+│   .gitignore
+│   CMakeLists.txt
+│   package.json
+│   package-lock.json
+│   README.md
+│
+├── client
+│   ├── data
+│   │   ├── db.json
+│   │   └── db2.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   └── src
+│       ├── components
+│       ├── context
+│       ├── css
+│       ├── customHooks
+│       ├── getLPTheme.js
+│       └── index.js
+│
+└── server
+    ├── src
+    │   ├── middleware
+    │   ├── models
+    │   ├── routes
+    │   ├── .gitignore
+    │   ├── index.js
+    │   ├── package.json
+    │   └── package-lock.json
+```
+
 ## Contributors
 <a name="contributors"></a> 
   - Armando Albornoz: Project Manager

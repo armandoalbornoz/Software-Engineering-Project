@@ -58,7 +58,7 @@ each is responsible for different parts of the application.
 ## Application Blueprint
 
 ```
-SWE_Project
+Software-Engineering-Project
 │   .gitignore
 │   CMakeLists.txt
 │   package.json

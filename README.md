@@ -13,6 +13,7 @@ This README provides an overview of the structure and content of the BMI Tracker
     - [Server](#server-overview)
     - [Server Content](#server-content)
 - [Application Structure](#application-structure)
+- [Test Instructions](#test-Instructions)
 - [Contributors](#contributors)
 
 ## Project Content Structure
@@ -95,6 +96,19 @@ Software-Engineering-Project
     │   └── package-lock.json
 ```
 
+## Use Instructions
+<a name="test-Instructions"></a>
+To test the application locally you can clone it or download the project folder. The application will not work from the get-go since it requires a .env file in the server folder that provides sensitive information. If you want to test the application, you can create the .env file in the server folder and put the following information in the file: 
+
+PORT=3001 
+
+MONGO_URI=mongodb+srv://ehengber:BMITracker123@bmis.maiqzpx.mongodb.net/ 
+
+SECRET= 9228145029 
+
+After this, starting the frontend and backend folder simply requires entering those folders and running the scripts npm start and npm run dev, respectively. Ensure that the backend is running properly first before starting the frontend. 
+
+ 
 ## Contributors
 <a name="contributors"></a> 
   - Armando Albornoz: Project Manager
